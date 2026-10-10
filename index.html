@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microbiology Flash Cards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            margin-bottom: 30px;
+            height: 400px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            cursor: pointer;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            backface-visibility: hidden;
+            border-radius: 15px;
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .flashcard-back {
+            background: white;
+            color: #333;
+            font-size: 1.3em;
+            transform: rotateY(180deg);
+            border: 2px solid #667eea;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .progress {
+            text-align: center;
+            color: white;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .deck-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .deck-selector select {
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-text {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .flashcard {
+                padding: 30px;
+            }
+
+            .flashcard-front,
+            .flashcard-back {
+                padding: 30px;
+                font-size: 1.2em;
+            }
+
+            .flashcard-front {
+                font-size: 1.3em;
+            }
+
+            .flashcard-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 Microbiology Flash Cards</h1>
+            <p>Click the card to reveal the answer</p>
+        </div>
+
+        <div class="deck-selector">
+            <select id="deckSelect">
+                <option value="default">Select a Deck</option>
+            </select>
+        </div>
+
+        <div class="progress">
+            Card <span id="current">1</span> of <span id="total">0</span>
+        </div>
+
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-front" id="front">
+                    Click to start
+                </div>
+                <div class="flashcard-back" id="back">
+                    Select a deck to begin
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="previousCard()">← Previous</button>
+            <button onclick="toggleFlip()">Flip Card</button>
+            <button onclick="nextCard()">Next →</button>
+            <button onclick="shuffleCards()">🔀 Shuffle</button>
+            <button onclick="resetCards()">↻ Reset</button>
+        </div>
+
+        <div class="stats">
+            <p id="stats">Ready to learn! Select a deck to begin.</p>
+        </div>
+
+        <div class="info-text">
+            <p>💡 Tip: You can also click the card to flip it</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample flashcard data - you can add more decks
+        const decks = {
+            default: [
+                {
+                    front: "What is a bacterium?",
+                    back: "A single-celled prokaryotic microorganism without a nucleus or membrane-bound organelles."
+                },
+                {
+                    front: "What is the function of the cell wall in bacteria?",
+                    back: "Provides structural support and protection to the bacterial cell."
+                },
+                {
+                    front: "Define prokaryote",
+                    back: "An organism whose cells lack a true nucleus and other membrane-bound organelles."
+                },
+                {
+                    front: "What are the three main shapes of bacteria?",
+                    back: "Cocci (spherical), Bacilli (rod-shaped), and Spirilla (spiral-shaped)."
+                },
+                {
+                    front: "What is a virus?",
+                    back: "A microscopic infectious agent that requires a host cell to replicate."
+                }
+            ]
+        };
+
+        let currentDeck = [];
+        let currentIndex = 0;
+        let isFlipped = false;
+
+        function loadDeck(deckName) {
+            if (decks[deckName]) {
+                currentDeck = JSON.parse(JSON.stringify(decks[deckName]));
+                currentIndex = 0;
+                isFlipped = false;
+                displayCard();
+                updateStats();
+            }
+        }
+
+        function displayCard() {
+            if (currentDeck.length === 0) return;
+
+            const card = currentDeck[currentIndex];
+            const flashcard = document.getElementById('flashcard');
+            const front = document.getElementById('front');
+            const back = document.getElementById('back');
+
+            front.textContent = card.front;
+            back.textContent = card.back;
+
+            document.getElementById('current').textContent = currentIndex + 1;
+            document.getElementById('total').textContent = currentDeck.length;
+
+            flashcard.classList.remove('flipped');
+            isFlipped = false;
+        }
+
+        function toggleFlip() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            if (currentIndex < currentDeck.length - 1) {
+                currentIndex++;
+                displayCard();
+            }
+        }
+
+        function previousCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCard();
+            }
+        }
+
+        function shuffleCards() {
+            for (let i = currentDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+            }
+            currentIndex = 0;
+            displayCard();
+            updateStats();
+        }
+
+        function resetCards() {
+            currentIndex = 0;
+            displayCard();
+            updateStats();
+        }
+
+        function updateStats() {
+            const stats = document.getElementById('stats');
+            const completed = currentIndex + 1;
+            const total = currentDeck.length;
+            const percentage = Math.round((completed / total) * 100);
+            stats.textContent = `Progress: ${completed}/${total} cards (${percentage}%)`;
+        }
+
+        // Initialize deck selector
+        function initializeDeckSelector() {
+            const select = document.getElementById('deckSelect');
+            select.innerHTML = '<option value="">Select a Deck</option>';
+            
+            for (let deckName in decks) {
+                const option = document.createElement('option');
+                option.value = deckName;
+                option.textContent = deckName.charAt(0).toUpperCase() + deckName.slice(1);
+                select.appendChild(option);
+            }
+
+            select.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    loadDeck(e.target.value);
+                }
+            });
+        }
+
+        // Click card to flip
+        document.getElementById('flashcard').addEventListener('click', toggleFlip);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') previousCard();
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggleFlip();
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', initializeDeckSelector);
+    </script>
+</body>
+</html>
