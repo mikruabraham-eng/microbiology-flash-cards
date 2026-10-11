@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microbiology Flashcards: Spontaneous Generation, Germ Theory & Branches</title>
+<style>
+:root{--ink:#172033;--muted:#5b6578;--bg:#f4f7fb;--card:#fff;--accent:#2159a6;--line:#d9e1ee;--green:#e8f7ed}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:#173b70;color:white;padding:28px 18px;text-align:center}header h1{margin:0 auto 8px;max-width:900px;font-size:clamp(1.45rem,3vw,2.2rem)}header p{margin:0 auto;max-width:760px;color:#e2ebfb}
+main{max-width:1100px;margin:24px auto;padding:0 16px 40px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:16px}.toolbar input{flex:1;min-width:220px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white}.count{color:var(--muted);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px}
+.flashcard{border:1px solid var(--line);border-radius:14px;background:var(--card);min-height:190px;padding:0;overflow:hidden;box-shadow:0 3px 12px #1c37600c}
+.flashcard button{display:flex;flex-direction:column;text-align:left;gap:10px;width:100%;height:100%;min-height:190px;padding:18px;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.flashcard button:focus-visible{outline:3px solid #78aaff;outline-offset:-4px}.tag{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent)}.term{font-size:1.12rem;font-weight:750}.definition{color:#344057}.hint{margin-top:auto;font-size:.8rem;color:var(--muted)}.flashcard.revealed{background:var(--green);border-color:#a8d8b6}.flashcard[hidden]{display:none}
+footer{text-align:center;color:var(--muted);padding:12px;font-size:.9rem}
+button.control{border:1px solid var(--line);background:white;border-radius:9px;padding:10px 13px;font:inherit;cursor:pointer}
+@media print{header{background:white;color:black}header p{color:black}.toolbar,.hint,footer{display:none}.grid{grid-template-columns:repeat(2,1fr)}.flashcard{break-inside:avoid}.flashcard button{min-height:0}}
+</style>
+</head>
+<body>
+<header>
+<h1>Introduction to Microbiology: 20 Flashcards</h1>
+<p>Spontaneous generation experiments • Germ theory of disease • Types of microorganisms • Pure and applied microbiology</p>
+</header>
+<main>
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search terms or definitions…" aria-label="Search flashcards">
+<span class="count" id="count">20 flashcards</span>
+<button class="control" id="showAll" type="button">Show all answers</button>
+<button class="control" id="hideAll" type="button">Hide all answers</button>
+</div>
+<section class="grid" id="cards" aria-label="Flashcards">
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">History & experiments · 1</span><span class="term">Spontaneous generation</span><span class="definition" hidden>The historical idea that living organisms could arise directly from nonliving matter under ordinary conditions.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">History & experiments · 2</span><span class="term">Francesco Redi’s experiment (1668)</span><span class="definition" hidden>Redi compared meat in open, sealed, and gauze-covered jars. Maggots appeared where flies could reach the meat or lay eggs, showing that maggots came from flies rather than meat spontaneously producing them.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">History & experiments · 3</span><span class="term">Lazzaro Spallanzani’s broth experiment</span><span class="definition" hidden>Spallanzani boiled nutrient broth and sealed the flasks. Broth stayed free of visible microbial growth while sealed, suggesting microbes entered from the environment; critics argued that sealing or heating interfered with a supposed vital force.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">History & experiments · 4</span><span class="term">Pasteur’s swan-neck flask experiment</span><span class="definition" hidden>Louis Pasteur boiled broth in flasks with curved necks. Air could enter, but dust and microbes were trapped in the bend, so the broth remained clear until the neck was broken or broth contacted trapped particles.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">History & experiments · 5</span><span class="term">Biogenesis</span><span class="definition" hidden>The principle that living organisms arise from pre-existing life under the conditions tested. Pasteur’s work strongly undermined spontaneous generation of microorganisms.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Germ theory · 6</span><span class="term">Germ theory of disease</span><span class="definition" hidden>The theory that specific microorganisms can cause specific infectious diseases. It helped replace explanations based only on bad air or imbalances with evidence-based microbial causes.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Germ theory · 7</span><span class="term">Louis Pasteur’s contribution</span><span class="definition" hidden>Pasteur connected microorganisms with fermentation and spoilage, challenged spontaneous generation, and helped establish that microbes are biologically active agents rather than products that appear from broth on their own.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Germ theory · 8</span><span class="term">Robert Koch’s contribution</span><span class="definition" hidden>Koch developed methods for isolating and studying pathogens and provided strong evidence linking particular bacteria with diseases such as anthrax and tuberculosis.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Germ theory · 9</span><span class="term">Koch’s postulates</span><span class="definition" hidden>A classical set of criteria used to test whether a microorganism causes a disease: association with cases, isolation, reproduction of disease in a suitable host, and re-isolation. They have limitations for unculturable microbes and complex diseases.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Germ theory · 10</span><span class="term">Joseph Lister and antisepsis</span><span class="definition" hidden>Lister applied germ-related ideas to surgery by using antiseptic methods to reduce contamination and surgical infections.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 11</span><span class="term">Bacteria</span><span class="definition" hidden>Single-celled prokaryotes without a membrane-bound nucleus. Many are beneficial, while some cause disease; they also drive decomposition and nutrient cycling.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 12</span><span class="term">Archaea</span><span class="definition" hidden>Single-celled prokaryotes distinct from bacteria in their genetics and biochemistry. They occur in many environments, including extreme habitats, soils, oceans, and animal digestive systems.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 13</span><span class="term">Fungi</span><span class="definition" hidden>Eukaryotic organisms that include yeasts and molds. Fungi are important decomposers and are used in food production; some also cause infections or spoil food.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 14</span><span class="term">Protozoa</span><span class="definition" hidden>A diverse group of mostly single-celled eukaryotes. Many live freely in water or soil, while some are parasites that cause diseases such as malaria.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 15</span><span class="term">Microscopic algae</span><span class="definition" hidden>Photosynthetic microorganisms found in aquatic and moist environments. They contribute to primary production and oxygen generation and form the base of many aquatic food webs.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Microorganisms · 16</span><span class="term">Viruses</span><span class="definition" hidden>Acellular infectious agents made of genetic material inside a protein coat, sometimes with a lipid envelope. They replicate only inside host cells and are generally not considered independently living cells.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Pure & applied fields · 17</span><span class="term">Pure microbiology</span><span class="definition" hidden>Research aimed at understanding fundamental microbial biology, such as cell structure, metabolism, genetics, evolution, and interactions, without requiring an immediate practical use.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Pure & applied fields · 18</span><span class="term">Applied microbiology</span><span class="definition" hidden>The use of microbial knowledge to solve practical problems in medicine, agriculture, food production, industry, and environmental management.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Pure & applied fields · 19</span><span class="term">Medical and food microbiology</span><span class="definition" hidden>Medical microbiology studies microbes associated with human disease, diagnosis, prevention, and treatment. Food microbiology studies microbes in fermentation, food safety, spoilage, and foodborne illness.</span><span class="hint">Click to reveal answer</span></button></article>
+<article class="flashcard"><button type="button" aria-expanded="false"><span class="tag">Pure & applied fields · 20</span><span class="term">Agricultural, industrial, and environmental microbiology</span><span class="definition" hidden>Agricultural microbiology studies microbes in soil fertility and plant health; industrial microbiology uses microbes to make useful products; environmental microbiology studies microbial roles in ecosystems, waste treatment, and pollution cleanup.</span><span class="hint">Click to reveal answer</span></button></article>
+</section>
+</main>
+<footer>Study tip: review the term first, say the answer aloud, then click to check yourself.</footer>
+<script>
+const cards=[...document.querySelectorAll('.flashcard')];
+function setReveal(card,show){const b=card.querySelector('button'),d=card.querySelector('.definition'),h=card.querySelector('.hint');d.hidden=!show;b.setAttribute('aria-expanded',String(show));card.classList.toggle('revealed',show);h.textContent=show?'Click to hide answer':'Click to reveal answer';}
+cards.forEach(card=>card.querySelector('button').addEventListener('click',()=>setReveal(card,card.querySelector('.definition').hidden)));
+document.getElementById('showAll').addEventListener('click',()=>cards.forEach(c=>setReveal(c,true)));
+document.getElementById('hideAll').addEventListener('click',()=>cards.forEach(c=>setReveal(c,false)));
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();let n=0;cards.forEach(c=>{const match=c.textContent.toLowerCase().includes(q);c.hidden=!match;if(match)n++;});document.getElementById('count').textContent=`${n} of ${cards.length} flashcards`;});
+</script>
+</body>
+</html>
