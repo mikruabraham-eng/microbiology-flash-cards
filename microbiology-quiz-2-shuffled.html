@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Microbiology Quiz 2</title>
+<style>
+body{font:16px/1.5 system-ui,Arial,sans-serif;background:#f3f6fb;color:#172033;margin:0}main{max-width:850px;margin:auto;padding:22px 15px 45px}header,.card,#result{background:white;border:1px solid #d8e0ec;border-radius:16px;padding:20px;margin:14px 0}h1{margin:0 0 5px}h2{font-size:1.1rem}.muted{color:#536179}.option{display:flex;gap:10px;padding:11px;border:1px solid #d8e0ec;border-radius:10px;margin:8px 0;cursor:pointer}.option input{margin-top:5px}.correct{background:#dff5e5;border-color:#65b77b}.wrong{background:#fde7e7;border-color:#dc7777}.feedback{display:none;background:#eef3fa;padding:12px;border-radius:9px;margin-top:10px}.feedback.show{display:block}button{background:#2157a5;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer;margin:8px 6px 8px 0}.secondary{background:#e4eaf4;color:#172033}.bar{height:7px;background:#e3e9f2;border-radius:9px;margin-top:16px;overflow:hidden}.bar span{display:block;background:#2157a5;height:100%;width:0%}
+</style></head><body><main><header><h1>Microbiology Quiz 2</h1><p class="muted">20 multiple-choice questions parallel to Microbiology Flashcards 2.</p><p class="muted">Topics: experiments against spontaneous generation, biogenesis, germ theory, Koch, Lister, microorganism groups, and microbiology subfields.</p><div class="bar"><span id="bar"></span></div></header><form id="quiz"></form><button id="submit" type="button">Submit answers</button><button id="reset" class="secondary" type="button">Try again</button><section id="result" style="display:none" aria-live="polite"></section>
+<script>
+const questions = [{"q": "What did Francesco Redi’s experiment with meat primarily challenge?", "options": ["The idea that maggots arise spontaneously from meat", "The role of flies in carrying microorganisms", "The ability of heat to kill microbes", "The idea that organisms can reproduce"], "answer": 0, "explanation": "Maggots appeared when flies could reach the meat, supporting the role of flies rather than spontaneous generation."}, {"q": "Why did boiled broth in Spallanzani’s sealed flasks remain free of microbial growth?", "options": ["Boiling and preventing contamination limited microbial growth", "The broth contained no nutrients", "The glass produced an antimicrobial chemical", "Microorganisms cannot live in liquids"], "answer": 0, "explanation": "Boiling reduced existing microbes, while sealing helped prevent new microbes from entering."}, {"q": "What was crucial about Pasteur’s swan-neck flask?", "options": ["Its curved neck trapped airborne particles while allowing air to enter", "It prevented all air from entering", "It kept the broth continuously boiling", "It added nutrients to the broth"], "answer": 0, "explanation": "The curved neck allowed air in but trapped many particles that could carry microorganisms."}, {"q": "Which statement best describes biogenesis?", "options": ["Life arises from pre-existing life under the conditions studied", "Life always appears from dust without parents", "Only animals can reproduce", "Microbes form only in sealed containers"], "answer": 0, "explanation": "Biogenesis holds that living organisms come from pre-existing living organisms."}, {"q": "What central claim does germ theory make?", "options": ["Specific microorganisms can cause specific diseases", "All microorganisms cause disease", "Disease is caused only by temperature", "Microorganisms occur only in diseased tissue"], "answer": 0, "explanation": "Germ theory connects particular microorganisms with particular infectious diseases."}, {"q": "Which scientist is strongly associated with linking particular microbes to particular infectious diseases?", "options": ["Robert Koch", "Francesco Redi", "Joseph Lister", "Lazzaro Spallanzani"], "answer": 0, "explanation": "Koch’s research helped establish causal links between specific microbes and infectious diseases."}, {"q": "What is the purpose of Koch’s postulates in classical microbiology?", "options": ["To assess whether a microorganism causes a particular disease", "To classify microbes by shape alone", "To determine fungal nutritional needs", "To prove viruses are cellular organisms"], "answer": 0, "explanation": "The postulates are classical criteria for evaluating whether a microorganism causes a disease."}, {"q": "How did Joseph Lister contribute to medical practice?", "options": ["He introduced antiseptic methods to reduce surgical infections", "He developed the swan-neck flask", "He showed maggots develop from fly eggs", "He first described archaea"], "answer": 0, "explanation": "Lister promoted antiseptic surgical practices to reduce contamination and infection."}, {"q": "Which feature distinguishes bacteria from eukaryotic microorganisms such as fungi?", "options": ["Bacteria lack a membrane-bound nucleus", "Bacteria always cause disease", "Bacteria are always multicellular", "Bacteria replicate only inside host cells"], "answer": 0, "explanation": "Bacteria are prokaryotes and do not have a membrane-bound nucleus."}, {"q": "Which statement about Archaea is accurate?", "options": ["They are prokaryotes distinct from bacteria in important molecular features", "They are a type of virus", "They are all disease-causing fungi", "They possess a membrane-bound nucleus"], "answer": 0, "explanation": "Archaea are prokaryotes with molecular and biochemical features that distinguish them from bacteria."}, {"q": "Which group includes yeasts and molds?", "options": ["Fungi", "Archaea", "Viruses", "Protozoa"], "answer": 0, "explanation": "Yeasts and molds are fungi, a group of eukaryotic organisms."}, {"q": "Which description best fits protozoa?", "options": ["Mostly unicellular eukaryotic microorganisms", "Acellular agents requiring host cells to replicate", "Prokaryotes without nuclei", "Multicellular photosynthetic plants only"], "answer": 0, "explanation": "Protozoa are a diverse group of mostly single-celled eukaryotic microorganisms."}, {"q": "What is a common ecological role of microscopic algae?", "options": ["Photosynthesis and primary production", "Antiseptic treatment of wounds", "Replication only inside animal cells", "Converting all nitrogen directly into oxygen"], "answer": 0, "explanation": "Many microscopic algae photosynthesize and contribute to primary production in aquatic ecosystems."}, {"q": "Why are viruses described as acellular?", "options": ["They are not made of cells and depend on host cells for replication", "They are bacteria without cell walls", "They have a nucleus but no cytoplasm", "They reproduce independently in nutrient broth"], "answer": 0, "explanation": "Viruses are not cells and must use host-cell machinery to replicate."}, {"q": "A researcher studies microbial cell structure to understand basic biological processes, without an immediate practical goal. Which field is this?", "options": ["Pure microbiology", "Applied microbiology", "Food safety regulation", "Industrial fermentation engineering"], "answer": 0, "explanation": "Pure microbiology emphasizes fundamental understanding of microorganisms and their biology."}, {"q": "A team uses bacteria to manufacture a useful product at commercial scale. Which broad field best fits this work?", "options": ["Applied microbiology", "Pure microbiology only", "Taxonomy without application", "Historical microbiology"], "answer": 0, "explanation": "Applied microbiology uses microbial knowledge for practical purposes, including production."}, {"q": "Which subfield focuses most directly on microorganisms associated with human infection and disease?", "options": ["Medical microbiology", "Agricultural microbiology", "Industrial microbiology", "Marine botany"], "answer": 0, "explanation": "Medical microbiology studies microorganisms relevant to human health and disease."}, {"q": "A scientist investigates microbes that spoil food and methods to control them. Which subfield is most directly relevant?", "options": ["Food microbiology", "Astrophysics", "Pure mineralogy", "Structural geology"], "answer": 0, "explanation": "Food microbiology examines microorganisms involved in food production, spoilage, and safety."}, {"q": "Which example best represents agricultural microbiology?", "options": ["Studying soil microbes that influence plant nutrient availability", "Using antiseptics during surgery", "Studying viral replication in animal cells only", "Measuring the boiling point of pure water"], "answer": 0, "explanation": "Agricultural microbiology includes soil and plant-associated microbes that affect crop growth and nutrient availability."}, {"q": "Which activity is a clear example of environmental microbiology?", "options": ["Studying microbial decomposition and nutrient cycling in ecosystems", "Using fungi only to decorate food", "Classifying surgical instruments by size", "Testing the color of sterile glass"], "answer": 0, "explanation": "Environmental microbiology investigates microbial roles in ecosystems, including decomposition and nutrient cycling."}];
+const form=document.getElementById('quiz');
+let shuffledOptions=[];
+function shuffleOptions(){
+  shuffledOptions=questions.map(q=>{
+    const options=q.options.map((text,originalIndex)=>({text,originalIndex}));
+    for(let i=options.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [options[i],options[j]]=[options[j],options[i]];
+    }
+    return options;
+  });
+}
+function renderQuiz(){
+  form.innerHTML='';
+  questions.forEach((item,i)=>{
+    const card=document.createElement('section');card.className='card';card.id='q'+i;
+    const h=document.createElement('h2');h.textContent=(i+1)+'. '+item.q;card.appendChild(h);
+    shuffledOptions[i].forEach((option,displayIndex)=>{
+      const lab=document.createElement('label');lab.className='option';
+      lab.dataset.correct=String(option.originalIndex===item.answer);
+      const input=document.createElement('input');input.type='radio';input.name='q'+i;input.value=option.originalIndex;
+      const span=document.createElement('span');span.textContent=String.fromCharCode(65+displayIndex)+'. '+option.text;
+      lab.append(input,span);card.appendChild(lab);
+    });
+    const fb=document.createElement('div');fb.className='feedback';fb.id='fb'+i;card.appendChild(fb);form.appendChild(card);
+  });
+}
+function progress(){
+  let n=0;questions.forEach((q,i)=>{if(form.querySelector('input[name="q'+i+'"]:checked'))n++});
+  document.getElementById('bar').style.width=(n/questions.length*100)+'%';
+}
+shuffleOptions();renderQuiz();
+form.addEventListener('change',progress);
+document.getElementById('submit').onclick=()=>{
+  let score=0;
+  questions.forEach((q,i)=>{
+    const chosen=form.querySelector('input[name="q'+i+'"]:checked');
+    const card=document.getElementById('q'+i);
+    card.querySelectorAll('.option').forEach(lab=>{
+      lab.classList.remove('correct','wrong');
+      if(lab.dataset.correct==='true')lab.classList.add('correct');
+      if(chosen&&lab.querySelector('input')===chosen&&Number(chosen.value)!==q.answer)lab.classList.add('wrong');
+    });
+    const fb=document.getElementById('fb'+i);fb.className='feedback show';
+    if(chosen&&Number(chosen.value)===q.answer){score++;fb.textContent='Correct. '+q.explanation}
+    else{fb.textContent=(chosen?'Not quite. ':'Not answered. ')+q.explanation}
+  });
+  const pct=Math.round(score/questions.length*100);
+  const r=document.getElementById('result');r.style.display='block';
+  r.innerHTML='<h2>Your score: '+score+' / '+questions.length+' ('+pct+'%)</h2><p>'+(pct>=80?'🎉🌟🤩 Excellent work!':pct>=60?'Good effort—review the feedback and try again.':'Keep practicing—review the flashcards and try again.')+'</p><p>Click <strong>Try again</strong> to start a new attempt with the answer choices shuffled.</p>';
+  document.getElementById('submit').disabled=true;
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+};
+document.getElementById('reset').onclick=()=>{
+  shuffleOptions();renderQuiz();document.getElementById('result').style.display='none';
+  document.getElementById('submit').disabled=false;progress();window.scrollTo({top:0,behavior:'smooth'});
+};</script></main></body></html>
