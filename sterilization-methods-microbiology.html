@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theory and Practice of Sterilization | Microbiology</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#5c687b;--accent:#155eef;--accent2:#0b4acb;--line:#dce3ee;--good:#137547;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:#102a56;color:white;padding:28px 16px;text-align:center}header h1{font-size:clamp(1.45rem,4vw,2.2rem);line-height:1.2;margin:0 auto 8px;max-width:850px}header p{margin:0;color:#dbe7ff}
+main{max-width:900px;margin:22px auto;padding:0 14px 40px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+button{border:0;border-radius:10px;padding:11px 15px;background:var(--accent);color:white;font-weight:650;font-size:1rem;cursor:pointer}
+button:hover{background:var(--accent2)}button:disabled{opacity:.45;cursor:not-allowed}.tabs button{background:#e3eaf7;color:#18345f}.tabs button.active{background:var(--accent);color:white}
+.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 18px #19345a0a}
+h2{margin:0 0 10px;font-size:1.35rem}h3{margin-top:0}.muted{color:var(--muted)}.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.progress{height:7px;background:#e7edf6;border-radius:99px;overflow:hidden;margin:10px 0 18px}.bar{height:100%;background:var(--accent);width:0}
+.flash-face{min-height:210px;display:flex;flex-direction:column;justify-content:center;gap:14px;background:#f8faff;border:1px solid var(--line);border-radius:13px;padding:24px;margin:14px 0}.flash-face .question{font-size:1.3rem;font-weight:750}.answer{border-top:1px solid var(--line);padding-top:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.secondary{background:#e8eef8;color:#18345f}.secondary:hover{background:#d9e4f5}.choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);padding:12px;border-radius:11px;margin:9px 0;cursor:pointer}.choice:hover{background:#f6f9ff}.choice input{margin-top:5px;accent-color:var(--accent)}.choice:has(input:checked){border-color:var(--accent);background:#f0f5ff}.feedback{border-radius:10px;padding:12px;margin-top:14px}.correct{background:#e9f7ef;color:var(--good)}.incorrect{background:#fff0ef;color:var(--bad)}.hidden{display:none}.score{font-size:2rem;font-weight:800;text-align:center}.small{font-size:.9rem}footer{text-align:center;color:var(--muted);padding:20px 12px}
+table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f3f6fb}
+@media(max-width:540px){.panel,.card{padding:15px}.flash-face{padding:18px;min-height:190px}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<header>
+<h1>Theory and Practice of Sterilization Methods in Microbiology</h1>
+<p>Undergraduate Microbiology • Interactive flashcards and self-marking quiz</p>
+</header>
+<main>
+<div class="tabs" role="tablist" aria-label="Study sections">
+<button class="active" id="tabCards" onclick="showSection('cards')">📚 Flashcards</button>
+<button id="tabQuiz" onclick="showSection('quiz')">📝 Quiz</button>
+<button id="tabGuide" onclick="showSection('guide')">🧪 Practical guide</button>
+</div>
+<section id="cards" class="panel">
+<div class="row"><div><h2>Interactive flashcards</h2><div class="muted small">Try to answer before revealing the explanation.</div></div><span id="cardCount" class="muted">Card 1 of 15</span></div>
+<div class="progress"><div class="bar" id="cardBar"></div></div>
+<div class="flash-face" aria-live="polite">
+<div class="muted small" id="faceLabel">QUESTION</div><div class="question" id="cardQuestion"></div>
+<div id="cardAnswer" class="answer hidden"></div>
+</div>
+<div class="actions">
+<button class="secondary" id="prevCard" onclick="moveCard(-1)">← Previous</button>
+<button id="revealBtn" onclick="toggleAnswer()">Reveal answer</button>
+<button class="secondary" id="nextCard" onclick="moveCard(1)">Next →</button>
+<button class="secondary" onclick="shuffleCards()">Shuffle cards</button>
+</div>
+</section>
+<section id="quiz" class="panel hidden">
+<div class="row"><div><h2>Multiple-choice quiz</h2><div class="muted small">Choose one best answer, then check it for feedback.</div></div><span id="quizCount" class="muted">Question 1 of 12</span></div>
+<div class="progress"><div class="bar" id="quizBar"></div></div>
+<div id="quizBody"></div>
+<div id="quizFeedback" class="feedback hidden" aria-live="polite"></div>
+<div class="actions" style="margin-top:16px">
+<button class="secondary" id="prevQ" onclick="moveQuestion(-1)">← Previous</button>
+<button id="checkQ" onclick="checkQuestion()">Check answer</button>
+<button id="nextQ" onclick="moveQuestion(1)" class="secondary hidden">Next →</button>
+<button id="finishQuiz" onclick="finishQuiz()" class="hidden">Finish quiz</button>
+</div>
+<div id="quizResult" class="hidden"></div>
+</section>
+<section id="guide" class="panel hidden">
+<h2>Practical laboratory guide</h2>
+<p>Choose a sterilization method based on the material, intended use, and a validated procedure. The examples below are educational; actual cycles must follow laboratory SOPs and equipment instructions.</p>
+<div style="overflow-x:auto"><table><thead><tr><th>Method</th><th>Principle</th><th>Typical application</th></tr></thead><tbody>
+<tr><td>Steam under pressure</td><td>Moist heat denatures essential proteins.</td><td>Compatible culture media, instruments, and appropriate laboratory waste.</td></tr>
+<tr><td>Dry heat</td><td>Oxidation and heat-induced cellular damage.</td><td>Suitable glassware, metal, and certain oils or powders.</td></tr>
+<tr><td>Membrane filtration</td><td>Physical removal of microorganisms from a liquid.</td><td>Some heat-sensitive solutions; a 0.22 µm membrane is commonly used for bacterial removal, but does not reliably remove all viruses or endotoxins.</td></tr>
+<tr><td>Ionizing radiation</td><td>DNA and cellular damage.</td><td>Compatible disposable medical products processed in validated facilities.</td></tr>
+<tr><td>UV-C radiation</td><td>Nucleic-acid damage where radiation reaches.</td><td>Exposed surfaces and air in suitable systems; shadows and limited penetration reduce effectiveness.</td></tr>
+<tr><td>Chemical sterilization</td><td>Validated chemical inactivation.</td><td>Compatible heat-sensitive equipment using systems such as ethylene oxide or vaporized hydrogen peroxide.</td></tr>
+</tbody></table></div>
+<h3 style="margin-top:22px">Basic autoclave practice</h3>
+<ol>
+<li>Check material compatibility and use the correct container. Do not tightly seal containers unless the system is specifically designed for it.</li>
+<li>Avoid overloading; arrange the load to allow steam circulation.</li>
+<li>Select the validated cycle for the load. A commonly taught cycle is 121°C at approximately 15 psi gauge pressure, but the required exposure time depends on the load and validated procedure.</li>
+<li>Review physical records and appropriate chemical indicators; biological indicators are used according to the laboratory's quality-assurance plan.</li>
+<li>After the cycle, confirm pressure has returned to a safe level. Open cautiously and allow hot liquids to cool before handling.</li>
+<li>Document cycle parameters, indicator results, failures, and corrective actions.</li>
+</ol>
+<div class="feedback"><strong>Remember:</strong> A chemical indicator changing color confirms exposure to specified conditions, not sterility. A biological indicator uses resistant spores to evaluate process effectiveness. Sterilization requires a validated process and appropriate monitoring.</div>
+</section>
+</main>
+<footer>Microbiology learning resource • Review your laboratory's approved procedures before practical work.</footer>
+<script>
+const originalCards = [
+{q:"What is sterilization?",a:"A validated process intended to render a product free of viable microorganisms, including bacterial spores. The required process depends on the item and its intended use."},
+{q:"How does sterilization differ from disinfection?",a:"Sterilization aims to eliminate all viable microorganisms, including spores. Disinfection eliminates many or most pathogenic microorganisms on inanimate objects but may not destroy bacterial spores."},
+{q:"What is moist-heat sterilization?",a:"Sterilization using saturated steam under pressure. Steam transfers heat efficiently and kills microorganisms mainly by denaturing essential proteins."},
+{q:"What are commonly taught autoclave conditions?",a:"A commonly taught cycle is 121°C at about 15 psi gauge pressure for at least 15 minutes after the load reaches the required temperature. Actual time depends on the load and validated procedure."},
+{q:"What is the principle of dry-heat sterilization?",a:"Hot air kills microorganisms mainly through oxidation and other heat-induced damage."},
+{q:"What materials may be suitable for dry heat?",a:"Compatible glassware, metal instruments, and certain oils or powders that can withstand the validated cycle."},
+{q:"When is membrane filtration used?",a:"For compatible heat-sensitive liquids, such as some antibiotic or vitamin solutions. A suitable membrane commonly removes bacteria, but filtration does not reliably remove all viruses or endotoxins."},
+{q:"What is ionizing radiation used for?",a:"Gamma rays or electron beams can sterilize compatible products by damaging microbial DNA, often in validated manufacturing processes."},
+{q:"What is a limitation of UV-C radiation?",a:"It has limited penetration and only works where sufficient radiation reaches; shadows and surface irregularities reduce its effectiveness."},
+{q:"What is a biological indicator?",a:"A test system containing resistant bacterial spores used to evaluate whether a sterilization process has achieved the required microbial inactivation."},
+{q:"What does a chemical indicator tell you?",a:"It indicates exposure to specified process conditions. By itself, it does not prove that an item is sterile."},
+{q:"Why should an autoclave not be overloaded?",a:"Overloading can prevent adequate steam circulation and heat penetration, causing inadequate processing."},
+{q:"Can every laboratory material be autoclaved?",a:"No. Some heat-sensitive plastics, oils, powders, volatile chemicals, and electronic equipment may be incompatible. Check the material and approved SOP."},
+{q:"What is aseptic technique?",a:"Practices that prevent contamination of sterile materials, cultures, equipment, and the laboratory environment during procedures."},
+{q:"How does pasteurization differ from sterilization?",a:"Pasteurization reduces specified microorganisms and can improve safety or shelf life, but it does not make every product sterile."}
+];
+let cards=[...originalCards], cardIndex=0, answerVisible=false;
+function renderCard(){const c=cards[cardIndex];document.getElementById('cardQuestion').textContent=c.q;document.getElementById('cardAnswer').textContent=c.a;document.getElementById('cardAnswer').classList.toggle('hidden',!answerVisible);document.getElementById('faceLabel').textContent=answerVisible?'ANSWER':'QUESTION';document.getElementById('revealBtn').textContent=answerVisible?'Hide answer':'Reveal answer';document.getElementById('cardCount').textContent=`Card ${cardIndex+1} of ${cards.length}`;document.getElementById('cardBar').style.width=`${(cardIndex+1)/cards.length*100}%`;document.getElementById('prevCard').disabled=cardIndex===0;document.getElementById('nextCard').textContent=cardIndex===cards.length-1?'Back to first →':'Next →'}
+function toggleAnswer(){answerVisible=!answerVisible;renderCard()}
+function moveCard(d){cardIndex=(cardIndex+d+cards.length)%cards.length;answerVisible=false;renderCard()}
+function shuffleCards(){for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]]}cardIndex=0;answerVisible=false;renderCard()}
+const questions=[
+{q:"Which method is most appropriate for sterilizing a compatible aqueous culture medium?",opts:["UV radiation","Autoclaving","Refrigeration","Pasteurization"],correct:1,why:"Autoclaving uses pressurized saturated steam to sterilize compatible culture media."},
+{q:"What is the main mechanism of moist-heat sterilization?",opts:["Removal of oxygen","Freezing cellular water","Protein denaturation","Only damage to cell walls"],correct:2,why:"Moist heat efficiently transfers energy and denatures essential microbial proteins."},
+{q:"Which item is commonly suitable for dry-heat sterilization?",opts:["Heat-sensitive vaccine","Suitable glassware","Fresh serum","Antibiotic solution"],correct:1,why:"Suitable glassware can withstand dry heat; the other materials may be heat-sensitive."},
+{q:"Which method is commonly used for a compatible heat-sensitive solution?",opts:["Direct flaming","Dry heat","Membrane filtration","Incineration"],correct:2,why:"A suitable membrane filter can remove bacteria from compatible heat-sensitive liquids."},
+{q:"Which organism is commonly used as a biological indicator for steam sterilization?",opts:["Escherichia coli","Geobacillus stearothermophilus","Staphylococcus epidermidis","Saccharomyces cerevisiae"],correct:1,why:"Resistant spores of Geobacillus stearothermophilus are commonly used to monitor steam sterilization."},
+{q:"A chemical indicator changes color. What does this establish?",opts:["The item is certainly sterile","All spores have been killed","Specified exposure conditions were reached","The item is free of endotoxins"],correct:2,why:"Chemical indicators show exposure to specified conditions, not definitive sterility."},
+{q:"Why is air removal important in a steam autoclave?",opts:["Air improves steam penetration","Air can interfere with steam contact and heat transfer","Air destroys spores","Air makes chamber pressure zero"],correct:1,why:"Trapped air interferes with steam contact and can create cold spots."},
+{q:"Which method can be used for compatible disposable medical products in validated manufacturing?",opts:["Ionizing radiation","Boiling water","UV exposure only","Wiping with alcohol"],correct:0,why:"Gamma irradiation or electron-beam processing can sterilize compatible products in validated processes."},
+{q:"Which statement about UV-C is correct?",opts:["It reliably sterilizes inside opaque objects","It penetrates deeply through most materials","It is useful on exposed surfaces but has limited penetration","It sterilizes all culture media"],correct:2,why:"Shadows and limited penetration make UV-C unsuitable as a universal sterilization method."},
+{q:"A biological indicator suggests process failure. What is the best response?",opts:["Ignore it if the pack is dry","Release the load immediately","Withhold release as required and investigate","Assume success after a color change"],correct:2,why:"A failed indicator requires investigation and corrective action under the approved procedure."},
+{q:"Why should containers not be tightly sealed during autoclaving unless designed for it?",opts:["Pressure may build up dangerously","They destroy all steam","They remove indicators","They always lower temperature"],correct:0,why:"Pressure can build up in sealed containers and cause rupture."},
+{q:"Which statement best describes pasteurization?",opts:["It always destroys all bacterial spores","It reduces specified microorganisms but is not sterilization","It is identical to autoclaving","It is only for glassware"],correct:1,why:"Pasteurization reduces targeted microorganisms but does not render every product sterile."}
+];
+let qi=0, chosen={}, checked={}, done=false;
+function showSection(id){['cards','quiz','guide'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id));['Cards','Quiz','Guide'].forEach(s=>document.getElementById('tab'+s).classList.toggle('active',s.toLowerCase()===id))}
+function renderQuestion(){const q=questions[qi];document.getElementById('quizCount').textContent=`Question ${qi+1} of ${questions.length}`;document.getElementById('quizBar').style.width=`${(qi+1)/questions.length*100}%`;document.getElementById('quizBody').innerHTML='<h3>'+q.q+'</h3>'+q.opts.map((o,i)=>`<label class="choice"><input type="radio" name="choice" value="${i}" ${chosen[qi]===i?'checked':''} ${checked[qi]?'disabled':''}><span>${String.fromCharCode(65+i)}. ${o}</span></label>`).join('');document.querySelectorAll('input[name="choice"]').forEach(el=>el.addEventListener('change',e=>{if(!checked[qi])chosen[qi]=Number(e.target.value)}));const fb=document.getElementById('quizFeedback');fb.classList.toggle('hidden',!checked[qi]);if(checked[qi]){const good=chosen[qi]===q.correct;fb.className='feedback '+(good?'correct':'incorrect');fb.innerHTML=`<strong>${good?'Correct!':'Not quite.'}</strong><br>Correct answer: ${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}<br>${q.why}`}document.getElementById('prevQ').disabled=qi===0;document.getElementById('checkQ').classList.toggle('hidden',!!checked[qi]);document.getElementById('nextQ').classList.toggle('hidden',!checked[qi]||qi===questions.length-1);document.getElementById('finishQuiz').classList.toggle('hidden',!checked[qi]||qi!==questions.length-1);document.getElementById('quizResult').classList.add('hidden')}
+function checkQuestion(){const el=document.querySelector('input[name="choice"]:checked');if(!el){alert('Please select an answer first.');return}chosen[qi]=Number(el.value);checked[qi]=true;renderQuestion()}
+function moveQuestion(d){qi=Math.max(0,Math.min(questions.length-1,qi+d));renderQuestion()}
+function finishQuiz(){const score=questions.reduce((s,q,i)=>s+(checked[i]&&chosen[i]===q.correct?1:0),0);const r=document.getElementById('quizResult');r.classList.remove('hidden');r.innerHTML=`<hr><h2>Quiz result</h2><div class="score">${score} / ${questions.length}</div><p style="text-align:center">You scored ${Math.round(score/questions.length*100)}%.</p><p>${score>=10?'Excellent work! Review any missed questions.':score>=7?'Good effort. Review the explanations for missed questions.':'Keep practicing. Review the flashcards and try again.'}</p><div class="actions"><button onclick="restartQuiz()">Retake quiz</button><button class="secondary" onclick="showSection('cards')">Review flashcards</button></div><h3 style="margin-top:20px">Answer review</h3>`+questions.map((q,i)=>`<div style="padding:12px 0;border-bottom:1px solid var(--line)"><strong>${i+1}. ${q.q}</strong><p class="small">Your answer: ${chosen[i]===undefined?'Not answered':q.opts[chosen[i]]}</p><p class="small" style="color:var(--good)">Correct: ${q.opts[q.correct]}</p><p class="small muted">${q.why}</p></div>`).join('');document.getElementById('quizFeedback').classList.add('hidden');document.getElementById('quizBody').classList.add('hidden');document.getElementById('prevQ').classList.add('hidden');document.getElementById('checkQ').classList.add('hidden');document.getElementById('nextQ').classList.add('hidden');document.getElementById('finishQuiz').classList.add('hidden')}
+function restartQuiz(){qi=0;chosen={};checked={};done=false;document.getElementById('quizBody').classList.remove('hidden');document.getElementById('prevQ').classList.remove('hidden');renderQuestion()}
+renderCard();renderQuestion();
+</script>
+</body>
+</html>
